@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class BaseAsteroid : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region lives 
+    private int _lives = 1;
+
+    private int _steps;
+    #endregion lives 
+
+
+    #region init 
+    public void Init(int quadrant, int steps, float difficulty )
     {
-        
+        _steps = steps;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init()
     {
         
     }
+    #endregion init 
 }

@@ -63,11 +63,11 @@ public class PlayerControls : MonoBehaviour
     #region keyboard functionality 
     private void Update()
     {
-        if (Input.GetKeyDown(_leftKey)) { _down = true; } else { _down = false; }
-        if (Input.GetKeyDown(_rightKey)) { _right = true; } else { _right = false; }
-        if (Input.GetKeyDown(_upKey)) { _up = true; } else { _up = false; }
-        if (Input.GetKeyDown(_downKey)) { _down = true; } else { _down = false; }
-        if (Input.GetKeyDown(_fireKey)) { _fire = true; } else { _fire = false; }
+        if (Input.GetKey(_leftKey)) { _left = true; } else { _left = false; }
+        if (Input.GetKey(_rightKey)) { _right = true; } else { _right = false; }
+        if (Input.GetKey(_upKey)) { _up = true; } else { _up = false; }
+        if (Input.GetKey(_downKey)) { _down = true; } else { _down = false; }
+        if (Input.GetKey(_fireKey)) { _fire = true; } else { _fire = false; }
     }
 
     private void FixedUpdate()

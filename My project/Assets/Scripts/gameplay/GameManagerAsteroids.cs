@@ -27,6 +27,11 @@ public class GameManagerAsteroids : MonoBehaviour
         _instance = this;
     }
 
+    public static GameManagerAsteroids Instance()
+    {
+        return _instance;
+    }
+
 
     public void Init(ProfileData playerProfile)
     {

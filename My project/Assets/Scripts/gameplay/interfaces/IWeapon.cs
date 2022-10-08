@@ -5,5 +5,7 @@ using UnityEngine;
 public interface IWeapon 
 {
     void Fire();
-    void Reload();
+    void SetupCooldown(float newCooldown);
+
+    void Remove();
 }

@@ -1,0 +1,24 @@
+create a basic UI 
+make it work
+
+add the player via PlayerManager - done
+make the player movements
+create weapons - shoot projectiles, reload times ( attached to the player GO )
+
+make sure everything gets initialized from one place to another 
+
+place asteroids - create a basic difficulty settings counter 
+asteroids split into two 
+asteroids can destroy the player
+
+Game UI - and the player updates it 
+Designer UI - Apply the UI so they apply to the player
+
+check the list, see what's left - 
+
+try to create a reset
+
+
+do the cutscene on a different scene - load that scene in the start - then switch to the current on on any input - 
+
+

@@ -9,8 +9,8 @@ using System.Collections.Generic;
 public class ProfileData {
     public string playerName = "default";
 
-    public float acceleration = 1.0f;
-    public float rotationSpeed = 1.0f;
+    public float acceleration = 20.0f;
+    public float rotationSpeed = 20.0f;
     public int hpMaxLives = 3;
 
     public int difficultyIncrease = 1; // max is 10 

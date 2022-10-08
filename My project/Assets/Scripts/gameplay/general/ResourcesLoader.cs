@@ -19,11 +19,16 @@ public class ResourcesLoader : MonoBehaviour
 {
     #region loading 
     // Return a regular prefab
-    public GameObject CreateAndReturnGameObject(string prefabName)
+    public GameObject CreateAndReturnGameObject(string prefabLocation)
     {
-        return Instantiate(Resources.Load(prefabName) as GameObject);
+        return Instantiate(Resources.Load(prefabLocation) as GameObject);
     }
 
+
+    public GameObject ReturnPrefab(string prefabLocation)
+    {
+        return Resources.Load(prefabLocation) as GameObject;
+    }
 
 
     // Return a gameobject that is a UI menu 
