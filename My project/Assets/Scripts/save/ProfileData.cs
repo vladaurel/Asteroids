@@ -13,16 +13,16 @@ public class ProfileData {
     public float deltaTime = 0.1f; // what is the time difference 
     public float minTimeForAsteroid = 1f; // 
 
-    public int currentLives = 10;
-    public int score = 0;
+    public int currentLives = 10; 
+    public int score = 0; 
 
 
     //============================================================
     //                 Designer Options : 
     //============================================================
     public int hpMaxLives = 10;
-    public float acceleration = 20.0f;
-    public float rotationSpeed = 30.0f;
+    public float acceleration = 200.0f;
+    public float rotationSpeed = 80.0f;
     public float initialAsteroidScale = 1.0f;
     public int asteroidDestroySteps = 3; // how many times will it break into others ? 
     public float difficulty = 1f; // 
@@ -42,15 +42,15 @@ public class ProfileData {
     //               Modes : 
     //============================================================
     // public bool defenderShip = false; // creates a ship that will spin around the player - 
-    public bool spaceshipTrail = true; // your ship will leave a trail behind
+    public bool spaceshipTrail = false; // your ship will leave a trail behind
     public bool footbalMode = false; // asteroids are destroyed when leaving the screen. Player cannot die. 
     public bool alliedVisitors = false; // random ships will start appearing and shooting at the asteroids 
-    public bool discoMode = true; // asteroids will change colors every now and then - 
+    public bool discoMode = false; // asteroids will change colors every now and then - 
 
     //============================================================
     //              Powerups : 
     //============================================================
-    public List<int> powerupsAllowed = new List<int>() { 5 };  // 4 later - 
+    public List<int> powerupsAllowed = new List<int>() { 1,2 };  // 4 later - 
     // 1-shield ; 2-weapon 2 ; 3-asteroid bomb ;
     // 4 - defensive ball ; 5 - extra lives ; 6 - ethereal ; 
 
@@ -58,24 +58,17 @@ public class ProfileData {
     //============================================================
     //           Keyboard options follow 
     //============================================================
-    public KeyCode left = KeyCode.A; 
-    public KeyCode right = KeyCode.D; 
-    public KeyCode up = KeyCode.W; 
-    public KeyCode down = KeyCode.S; 
+    public KeyCode left = KeyCode.LeftArrow;  // A
+    public KeyCode right = KeyCode.RightArrow;  // D
+    public KeyCode up = KeyCode.UpArrow;  // W
+    public KeyCode down = KeyCode.DownArrow;  // S
     public KeyCode attack = KeyCode.Space; 
-    public KeyCode openInventory = KeyCode.I; 
-
-    public KeyCode jump = KeyCode.Space;
+    // public KeyCode openInventory = KeyCode.I; 
 
     public KeyCode special1 = KeyCode.Alpha1; 
     public KeyCode special2 = KeyCode.Alpha2; 
     public KeyCode special3 = KeyCode.Alpha3; 
     public KeyCode special4 = KeyCode.Alpha4;
-
-    public KeyCode pickup = KeyCode.E;
-
-    public KeyCode buildingModeforceGrid = KeyCode.LeftShift;
-    public KeyCode rotateObjectKey = KeyCode.R;
 
     //=====================================================================================================
     //            GENERAL PLAYER PREFERENCES FOLLOW 
@@ -93,15 +86,15 @@ public class ProfileData {
 
     public void AddPowerup(string powerup)
     {
-        int valueToCheck = 0;
+        int valueToCheck = 1;
         switch (powerup)
         {
-            case "shield": break;
-            case "weapon2": break;
-            case "asteroidBomb": break;
-            case "defensiveBall": break;
-            case "extraLives": break;
-            case "ethereal": break;
+            case "shield": valueToCheck = 1; break;
+            case "weapon2": valueToCheck = 2; break;
+            case "asteroidBomb": valueToCheck = 3; break;
+            case "defensiveBall": valueToCheck = 4; break;
+            case "extraLives": valueToCheck = 5; break;
+            case "ethereal": valueToCheck = 6; break;
         }
         if(!powerupsAllowed.Contains(valueToCheck))
         {
@@ -114,12 +107,12 @@ public class ProfileData {
         int valueToCheck = 0;
         switch (powerup)
         {
-            case "shield": break;
-            case "weapon2": break;
-            case "asteroidBomb": break;
-            case "defensiveBall": break;
-            case "extraLives": break;
-            case "ethereal": break;
+            case "shield": valueToCheck = 1; break;
+            case "weapon2": valueToCheck = 2; break;
+            case "asteroidBomb": valueToCheck = 3; break;
+            case "defensiveBall": valueToCheck = 4; break;
+            case "extraLives": valueToCheck = 5; break;
+            case "ethereal": valueToCheck = 6; break;
         }
         if(powerupsAllowed.Contains(valueToCheck))
         {

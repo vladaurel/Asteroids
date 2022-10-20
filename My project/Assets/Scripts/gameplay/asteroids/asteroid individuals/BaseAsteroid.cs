@@ -26,14 +26,19 @@ public class BaseAsteroid : MonoBehaviour
         orthographicHeight = orthographicWidth / Camera.main.aspect;
     }
 
+    public void ReadyForReuse()
+    {
+        _body.velocity = Vector2.zero;
+        _body.angularVelocity = 0;
+        gameObject.SetActive(true);
+    }
+
     public void Init(int quadrant, int steps, float scale, float difficulty)
     {
         _timeToRecalc += Time.time;
 
         transform.localScale = new Vector3(scale, scale);
         _steps = steps;
-
-
 
         transform.localScale = new Vector3(scale, scale, scale);
 
@@ -97,8 +102,8 @@ public class BaseAsteroid : MonoBehaviour
                     float angle1 = transform.rotation.eulerAngles.z - 90;
                     float angle2 = transform.rotation.eulerAngles.z + 90;
                     Vector3 difference = new Vector3(transform.localScale.x * Mathf.Cos(angle1 * Mathf.Deg2Rad), transform.localScale.y * Mathf.Sin(angle1 * Mathf.Deg2Rad), 0);
-                    GameManagerAsteroids.Instance().asteroidManager.CreateNewAsteroidAtLocation(transform.position + difference, angle2, _steps - 1, transform.localScale.x * .75f);
-                    GameManagerAsteroids.Instance().asteroidManager.CreateNewAsteroidAtLocation(transform.position - difference, angle1, _steps - 1, transform.localScale.x * .75f);
+                    GameManagerAsteroids.Instance().asteroidManager.CreateNewAsteroidAtLocation(transform.position + difference, angle2, _steps, transform.localScale.x * .75f);
+                    GameManagerAsteroids.Instance().asteroidManager.CreateNewAsteroidAtLocation(transform.position - difference, angle1, _steps, transform.localScale.x * .75f);
                 } else {
                     StateMachineAsteroids.PLAYER_PROFILE.score++;
                     StateMachineAsteroids.Instance().uiManager.UpdateScore();
@@ -108,7 +113,7 @@ public class BaseAsteroid : MonoBehaviour
                 GameManagerAsteroids.Instance().pickupManager.ChanceToAddPowerup(transform.position);
 
                 GameManagerAsteroids.Instance().asteroidManager.CleanupAsteroid(this);
-                Destroy(gameObject);
+                // Destroy(gameObject); 
             }
         } else {
             if(collision.collider.gameObject.layer == gameObject.layer)
@@ -184,7 +189,7 @@ public class BaseAsteroid : MonoBehaviour
 
         // remove from list 
         GameManagerAsteroids.Instance().asteroidManager.CleanupAsteroid(this);
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
     #endregion update 
 }

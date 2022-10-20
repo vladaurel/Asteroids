@@ -1,18 +1,21 @@
-check all powerups so far
-remaining powerups
+- issues with the asteroid steps of destruction 
+
+
+=====================================================
+=====================================================
+=====================================================
+
+- lower difficulty - check difficulties - 
+pooling for projectiles 
+Pooling pattern for asteroids 
+check all powerups so far 
+remaining powerups 
 add powerups 
+Make intro go faster 
 
-lower difficulty
-
-add modes
+add modes 
 make sure the transition gets passed forward between scenes 
 
-
-
-
-=====================================================
-=====================================================
-=====================================================
 
 check drop rates for powerups 
 see if the powerups actually connect

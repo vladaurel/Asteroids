@@ -9,7 +9,7 @@ namespace Cinematic1
         #region variables 
         private float _startTime;
         protected GameObject _objectVisual;
-        protected float _speed = 0.25f;
+        protected float _speed = 0.4f;
 
         protected Vector3 _initialPosition;
         protected Vector3 _finalPosition;

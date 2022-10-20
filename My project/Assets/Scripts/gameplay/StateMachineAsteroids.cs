@@ -28,11 +28,12 @@ public class StateMachineAsteroids : MonoBehaviour
     #region init 
     private void Awake()
     {
-        if (_instance != null)
+        Time.timeScale = 1.0f;
+        /*if (_instance != null)
         {
             Debug.LogError("On Awake : There is already an instance of the statemachine ! this should never happen !");
             return;
-        }
+        }*/
         _instance = this;
 
         RESOURCE_LOADER = gameObject.AddComponent<ResourcesLoader>();

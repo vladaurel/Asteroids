@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PowerupsMenu : UIBaseMenu
 {
@@ -81,6 +82,16 @@ public class PowerupsMenu : UIBaseMenu
         if (_powerupDefensiveBall.isOn) { profile.AddPowerup("defensiveBall"); } else { profile.RemovePowerup("defensiveBall"); }
         if (_powerupExtraLives.isOn) { profile.AddPowerup("extraLives"); } else { profile.RemovePowerup("extraLives"); }
         if (_powerupEthereal.isOn) { profile.AddPowerup("ethereal"); } else { profile.RemovePowerup("ethereal"); }
+
+        StateMachineAsteroids.Instance().SaveGame();
+        Time.timeScale = 1f;
+
+        if (_playIntro.isOn)
+        {
+            SceneManager.LoadScene(0);
+        } else {
+            SceneManager.LoadScene(1);
+        }
     }
     #endregion apply and reset 
 }

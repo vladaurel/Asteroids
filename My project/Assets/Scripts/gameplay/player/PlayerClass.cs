@@ -54,8 +54,8 @@ public class PlayerClass : MonoBehaviour
         _rotationSpeed = profile.rotationSpeed;
         _accelerationSpeed = profile.acceleration;
 
-        _rotationSpeed = 80;
-        _accelerationSpeed = 200;
+        // _rotationSpeed = 80;
+        // _accelerationSpeed = 200;
 
         gameObject.GetComponent<TrailRenderer>().enabled = profile.spaceshipTrail;
     }
@@ -148,7 +148,7 @@ public class PlayerClass : MonoBehaviour
         {
             if (collision.collider.gameObject.layer == 7)
             {
-                Debug.LogError("Received hit");
+                // Debug.LogError("Received hit");
                 if (hasShield)
                 {
                     // remove the shield 

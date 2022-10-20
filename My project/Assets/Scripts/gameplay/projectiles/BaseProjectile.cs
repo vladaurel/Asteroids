@@ -11,11 +11,14 @@ public class BaseProjectile : MonoBehaviour
     private float _timeToLive = 3f;
 
     protected int _hits = 1;
+
+    [SerializeField]
+    private int projectileType = 1;
     #endregion variables 
 
 
     #region init 
-    private void Awake()
+    private void OnEnable()
     {
         _timeToLive += Time.time;
     }
@@ -27,7 +30,8 @@ public class BaseProjectile : MonoBehaviour
     {
         if(Time.time>_timeToLive)
         {
-            Destroy(gameObject);
+            // GameManagerAsteroids.Instance().projectilesPool.SetProjectileIntoPool(gameObject, _projectileType);
+            SetIntoPool();
         }
     }
     #endregion
@@ -40,10 +44,26 @@ public class BaseProjectile : MonoBehaviour
             _hits--;
             if(_hits<=0)
             {
-                // Destroy(this);
-                Destroy(gameObject);
+                SetIntoPool();
             }
         }
     }
     #endregion collision 
+
+    #region pooling 
+    public void SetIntoPool()
+    {
+        gameObject.SetActive(false);
+        GameManagerAsteroids.Instance().projectilesPool.SetProjectileIntoPool(gameObject, projectileType);
+    }
+
+    public virtual void ReadyForReuse()
+    {
+        _hits = 1;
+        Rigidbody2D tempBody = gameObject.GetComponent<Rigidbody2D>();
+        tempBody.angularVelocity = 0;
+        tempBody.velocity = new Vector2(0, 0);
+        gameObject.SetActive(true);
+    }
+    #endregion pooling 
 }

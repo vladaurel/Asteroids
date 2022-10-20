@@ -29,6 +29,14 @@ public class PickupManager : MonoBehaviour
 
             GameObject pickup = null;
 
+            /**
+            Debug.LogError(_profile.powerupsAllowed[location]+"| POWERUP FOR LOCATION. |"+location);
+            for(int i=0;i<_profile.powerupsAllowed.Count;i++)
+            {
+                Debug.Log(_profile.powerupsAllowed[i]+"| Profile & powerups allowed |||||"+i);
+            }
+            */
+
             switch (_profile.powerupsAllowed[location]) 
             { 
                 case 1: pickup = res.CreateAndReturnGameObject("pickups/PickupShield"); break; 

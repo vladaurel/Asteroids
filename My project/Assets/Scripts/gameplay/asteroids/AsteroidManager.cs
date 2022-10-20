@@ -10,8 +10,10 @@ public class AsteroidManager : MonoBehaviour
     [System.NonSerialized]
     public List<BaseAsteroid> allAsteroids = new List<BaseAsteroid>();
 
-    // private float deltaTime = 0f; // time until launching a new asteroid
-    private int lastQuadrant = 1; // what was the last quadrant the asteroid was launched from 
+    [System.NonSerialized]
+    public List<GameObject> asteroidPool = new List<GameObject>(); // would usually have a different class for pooling 
+
+    private int latestQuadrant = 1; // what was the last quadrant the asteroid was launched from 
 
 
     //
@@ -71,20 +73,19 @@ public class AsteroidManager : MonoBehaviour
         if(newQuadrant < 0)
         {
             List<int> quadrants = new List<int>() { 1, 2, 3, 4 };
-            if(quadrants.Contains(lastQuadrant))
+            if(quadrants.Contains(latestQuadrant))
             {
-                quadrants.Remove(lastQuadrant);
+                quadrants.Remove(latestQuadrant);
             }
             int NQLocation = Mathf.RoundToInt(Random.Range(0, 3));
             newQuadrant = quadrants[NQLocation];
         }
 
-        int randAsteroid = Mathf.RoundToInt(Random.Range(0, 4));
-        GameObject newAsteroid = Instantiate(asteroidsPrefabs[randAsteroid]) as GameObject;
+        GameObject newAsteroid = ReturnPoolAsteroid();
 
         newAsteroid.GetComponent<BaseAsteroid>().Init(newQuadrant, StateMachineAsteroids.PLAYER_PROFILE.asteroidDestroySteps, StateMachineAsteroids.PLAYER_PROFILE.initialAsteroidScale, currentDifficulty); // , currentDifficulty);
 
-        lastQuadrant = newQuadrant;
+        latestQuadrant = newQuadrant;
 
         allAsteroids.Add(newAsteroid.GetComponent<BaseAsteroid>());
 
@@ -97,9 +98,10 @@ public class AsteroidManager : MonoBehaviour
         // creates a new asteroid at location - this is generally used when the asteroid is destroyed. 
         // each new asteroid will have half the scale of the previous one 
 
-        int randAsteroid = Mathf.RoundToInt(Random.Range(0, 4)); 
-        GameObject newAsteroid = Instantiate(asteroidsPrefabs[randAsteroid]) as GameObject;
-       
+        // int randAsteroid = Mathf.RoundToInt(Random.Range(0, 4)); 
+        // GameObject newAsteroid = Instantiate(asteroidsPrefabs[randAsteroid]) as GameObject;
+        GameObject newAsteroid = ReturnPoolAsteroid();
+
         newAsteroid.GetComponent<BaseAsteroid>().InitSmallAsteroid(placeLocation, angle,stepsToDestroy,scale,currentDifficulty); // , currentDifficulty);
         allAsteroids.Add( newAsteroid.GetComponent<BaseAsteroid>() );
     }
@@ -139,6 +141,7 @@ public class AsteroidManager : MonoBehaviour
     public void CleanupAsteroid(BaseAsteroid asteroidRemoved)
     {
         allAsteroids.Remove(asteroidRemoved);
+        PoolAsteroid(asteroidRemoved.gameObject);
     }
 
     public void CleanUp()
@@ -150,4 +153,28 @@ public class AsteroidManager : MonoBehaviour
         allAsteroids.Clear();
     }
     #endregion cleanup
+
+
+    #region pooling 
+    private GameObject ReturnPoolAsteroid()
+    {
+        if(asteroidPool.Count>0)
+        {
+            GameObject pooledAsteroid = asteroidPool[0];
+            asteroidPool.RemoveAt(0);
+            pooledAsteroid.GetComponent<BaseAsteroid>().ReadyForReuse();
+            return pooledAsteroid;
+        } else {
+            int randAsteroid = Mathf.RoundToInt(Random.Range(0, 4));
+            GameObject newAsteroid = Instantiate(asteroidsPrefabs[randAsteroid]) as GameObject;
+            return newAsteroid;
+        }
+    }
+
+    private void PoolAsteroid(GameObject asteroid)
+    {
+        asteroid.SetActive(false);
+        asteroidPool.Add(asteroid);
+    }
+    #endregion pooling 
 }

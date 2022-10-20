@@ -36,6 +36,7 @@ public class InvinciblePowerup : MonoBehaviour
         {
             _newInvulnTime = newTime;
         }
+        enabled = true;
         _player.SetNewInvulnTime(newTime);
         _sprite.color = new Color(1, 0, 0, 1);
     }

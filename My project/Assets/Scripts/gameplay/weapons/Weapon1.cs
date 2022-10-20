@@ -5,13 +5,13 @@ using UnityEngine;
 public class Weapon1 : BaseWeapon
 {
     #region variables 
-    private GameObject _projectile;
+    // private GameObject _projectile;
     #endregion variables 
 
     #region init 
-    private void Awake()
+    private void Start()
     {
-        _projectile = StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile");
+       // _projectile = GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(1);
     }
     #endregion init 
 
@@ -28,7 +28,8 @@ public class Weapon1 : BaseWeapon
 
     private void CreateBullet(float deltaSpeed)
     {
-        GameObject newBullet = Instantiate(_projectile);
+        // GameObject newBullet = Instantiate(_projectile);
+        GameObject newBullet = GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(1);
         newBullet.transform.position = transform.position;
 
         // newBullet.transform.position = newBullet.transform.position + (0.5f * new Vector3(Mathf.Cos(gameObject.transform.eulerAngles.z), Mathf.Sin(gameObject.transform.eulerAngles.z), 0));

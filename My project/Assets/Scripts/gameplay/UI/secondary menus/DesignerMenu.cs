@@ -53,12 +53,16 @@ public class DesignerMenu : UIBaseMenu
         profile.chanceToCreatePickup = Mathf.RoundToInt(_powerupDensity.value);
 
         // Int32.Parse(input)
+        StateMachineAsteroids.Instance().SaveGame();
+
+        GameManagerAsteroids.Instance().playerManager.UpdateDifficultyAndReset();
+        GameManagerAsteroids.Instance().asteroidManager.UpdateDifficultyAndReset();
     }
 
     public void Reset()
     {
-        _accelNumber.text = "20";
-        _rotation.text = "30";
+        _accelNumber.text = "200";
+        _rotation.text = "80";
         _maxHealth.text = "10";
         _difficulty.value = 1;
         _asteroidSteps.value = 2;
@@ -66,8 +70,8 @@ public class DesignerMenu : UIBaseMenu
 
         ProfileData profile = StateMachineAsteroids.PLAYER_PROFILE;
         profile.hpMaxLives = 3;
-        profile.acceleration = 20;
-        profile.rotationSpeed = 20;
+        profile.acceleration = 200;
+        profile.rotationSpeed = 80;
         profile.asteroidDestroySteps = 2;
         profile.difficulty = 1;
 
@@ -76,7 +80,13 @@ public class DesignerMenu : UIBaseMenu
 
     public void Restart()
     {
-        SceneManager.LoadSceneAsync(0);
+        StateMachineAsteroids.Instance().SaveGame();
+        if (StateMachineAsteroids.PLAYER_PROFILE.playIntro)
+        {
+            SceneManager.LoadScene(0);
+        } else {
+            SceneManager.LoadScene(1);
+        }
     }
     #endregion apply 
 }
