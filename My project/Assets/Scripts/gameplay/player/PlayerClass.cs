@@ -1,35 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Powerups;
 
 public class PlayerClass : MonoBehaviour
 {
     #region variables 
-    private float rotationSpeed;
-    private float accelerationSpeed;
+    private float _rotationSpeed;
+    private float _accelerationSpeed;
 
-    private IWeapon weapon = null;
-
-    private int health;
+    private IWeapon _weapon = null; // strategy pattern 
 
     // physics 
     private Rigidbody2D _body;
+
+    // bounds 
+    private float orthographicWidth;
+    private float orthographicHeight;
+
+    // powers - would usually place these in a different class, in an array list, following a powers interface - 
+    // no time for this. 
+    public bool hasShield = false;
+    public bool hasFriend = false;
+    private float _invulnerabilityTime = 0;
     #endregion variables 
 
     #region init 
     public void Initialize()
     {
         _body = gameObject.GetComponent<Rigidbody2D>();
+
+        orthographicWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        orthographicHeight = orthographicWidth / Camera.main.aspect;
+
         UpdatePlayerVariables();
     }
 
     public void SetupWeapon(IWeapon newWeapon)
     {
-        if(weapon != null)
+        if(_weapon != null)
         {
-            weapon.Remove();
+            _weapon.Remove();
         }
-        weapon = newWeapon;
+        _weapon = newWeapon;
     }
     #endregion init 
 
@@ -38,18 +51,18 @@ public class PlayerClass : MonoBehaviour
     public void UpdatePlayerVariables()
     {
         ProfileData profile = StateMachineAsteroids.PLAYER_PROFILE;
-        rotationSpeed = profile.rotationSpeed;
-        accelerationSpeed = profile.acceleration;
+        _rotationSpeed = profile.rotationSpeed;
+        _accelerationSpeed = profile.acceleration;
 
-        rotationSpeed = 80;
-        accelerationSpeed = 200;
+        _rotationSpeed = 80;
+        _accelerationSpeed = 200;
 
-        health = profile.hpMaxLives;
+        gameObject.GetComponent<TrailRenderer>().enabled = profile.spaceshipTrail;
     }
 
     public void ChangeWeapon(IWeapon newWeapon)
     {
-        weapon = newWeapon;
+        _weapon = newWeapon;
     }
 
     public void Move(bool left, bool right, bool up, bool down)
@@ -59,11 +72,11 @@ public class PlayerClass : MonoBehaviour
             // Quaternion deltaRotation = Quaternion.Euler( new Vector3(0,100,0) * Time.fixedDeltaTime);
             // _body.MoveRotation(_body.ro * deltaRotation);
 
-            _body.rotation += rotationSpeed * Time.deltaTime;
+            _body.rotation += _rotationSpeed * Time.deltaTime;
         } else {
             if(right)
             {
-                _body.rotation -= rotationSpeed * Time.deltaTime;
+                _body.rotation -= _rotationSpeed * Time.deltaTime;
             } else {
                 // it already has a decrease 
             }
@@ -75,13 +88,13 @@ public class PlayerClass : MonoBehaviour
 
         if(up)
         {
-            _body.AddForce(transform.right * accelerationSpeed * Time.deltaTime);
+            _body.AddForce(transform.right * _accelerationSpeed * Time.deltaTime);
         } else {
             if(down)
             {
-                _body.AddForce(-transform.right * accelerationSpeed * Time.deltaTime);
+                _body.AddForce(-transform.right * _accelerationSpeed * Time.deltaTime);
             } else {
-                // it already has a decrease 
+                // it already has a decrease - this is setup in WYSIWYG 
             }
         }
         // if( Mathf.Sqrt( Mathf.Pow(_body.velocity.x)
@@ -91,7 +104,7 @@ public class PlayerClass : MonoBehaviour
     {
         if(fire)
         {
-            weapon.Fire();
+            _weapon.Fire();
         }
     }
     #endregion functionality 
@@ -100,9 +113,6 @@ public class PlayerClass : MonoBehaviour
     #region update 
     private void Update()
     {
-        float orthographicWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        float orthographicHeight = orthographicWidth / Camera.main.aspect;
-
         if (transform.position.x< (-orthographicWidth))
         {
             transform.position = new Vector2(orthographicWidth  - 0.05f, transform.position.y);
@@ -124,4 +134,51 @@ public class PlayerClass : MonoBehaviour
         }
     }
     #endregion update 
+
+
+    #region collision 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(StateMachineAsteroids.PLAYER_PROFILE.footbalMode)
+        {
+            return;
+        }
+
+        if (Time.time > _invulnerabilityTime)
+        {
+            if (collision.collider.gameObject.layer == 7)
+            {
+                Debug.LogError("Received hit");
+                if (hasShield)
+                {
+                    // remove the shield 
+                    hasShield = false;
+                    ShieldPowerup shield = gameObject.GetComponentInChildren<ShieldPowerup>();
+                    if (shield != null)
+                    {
+                        Destroy(shield.gameObject);
+                    }
+                } else { 
+                    // reset the speeds 
+                    _body.velocity = new Vector2(0, 0);
+                    _body.angularVelocity = 0f;
+
+                    StateMachineAsteroids.Instance().uiManager.lifeHandler.DecreaseLife();
+                }
+            } else {
+                _body.angularVelocity = 0f;
+            }
+        } else {
+            _invulnerabilityTime = Time.time + 3;
+        }
+    }
+
+    public void SetNewInvulnTime(float newTime)
+    {
+        if(newTime > _invulnerabilityTime)
+        {
+            _invulnerabilityTime = newTime;
+        }
+    }
+    #endregion collision 
 }

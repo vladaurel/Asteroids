@@ -22,9 +22,8 @@ public class PlayerManager : MonoBehaviour
         controls.Init(player);
 
         UpdateDifficultyAndReset();
-
-        // ChangePlayerWeapon(1);
-        ChangePlayerWeapon(2);
+        ChangePlayerWeapon(1);
+        // ChangePlayerWeapon(2);
     }
 
     public void ChangePlayerWeapon(int weaponId)

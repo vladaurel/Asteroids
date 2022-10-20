@@ -13,6 +13,9 @@ public class GameManagerAsteroids : MonoBehaviour
 
     public PlayerManager playerManager; // player manager - contains player, player controls 
     public AsteroidManager asteroidManager; // asteroid manager - contains asteroids and controls
+    public PickupManager pickupManager;
+
+    public DiscoMode discoMode;
     // misc manager - contains alien + powerups 
     #endregion variables 
 
@@ -37,9 +40,12 @@ public class GameManagerAsteroids : MonoBehaviour
     {
         playerManager = gameObject.AddComponent<PlayerManager>();
         asteroidManager = gameObject.AddComponent<AsteroidManager>();
+        pickupManager = gameObject.AddComponent<PickupManager>();
 
         playerManager.Initialize();
-        asteroidManager.Initialize(); 
+        asteroidManager.Initialize();
+
+        discoMode = gameObject.AddComponent<DiscoMode>();
     }
 
     public void Clear()

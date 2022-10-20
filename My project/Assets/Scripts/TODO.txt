@@ -1,3 +1,62 @@
+check all powerups so far
+remaining powerups
+add powerups 
+
+lower difficulty
+
+add modes
+make sure the transition gets passed forward between scenes 
+
+
+
+
+=====================================================
+=====================================================
+=====================================================
+
+check drop rates for powerups 
+see if the powerups actually connect
+
+check asteroids splitting into two smaller ones
+
+
+Done - check projectile 1 vs asteroids
+
+
+Lives for player ( add & create in UI ) 
+
+- Test LifeHandler & make it work right
+Cinematic scene - 
+Credits scene - 
+Create powerups from the asteroid destruction 
+Test powerup
+score adding at the end
+
+
+PowerupMenu - add to the other and test 
+
+Footbal mode
+
+Cinematic movie
+
+TEST EVERYTHING
+---- 
+other modes
+
+//=======================================
+
+
+
+
+Collisions -
+
+Destoy asteroid - create 2 new or give score
+
+
+
+Open UI on ESC ( + pause game )
+
+
 create a basic UI 
 make it work
 

@@ -12,12 +12,12 @@ public class UIBaseMenu : MonoBehaviour
     #region functionality 
     public void Activate()
     {
-
+        gameObject.SetActive(true);
     }
 
     public void DeActivate()
     {
-
+        gameObject.SetActive(false);
     }
     #endregion functionality 
 

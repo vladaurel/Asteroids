@@ -8,7 +8,9 @@ using UnityEngine;
 public class BaseProjectile : MonoBehaviour
 {
     #region variables 
-    private float _timeToLive = 1.5f;
+    private float _timeToLive = 3f;
+
+    protected int _hits = 1;
     #endregion variables 
 
 
@@ -25,8 +27,23 @@ public class BaseProjectile : MonoBehaviour
     {
         if(Time.time>_timeToLive)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
-    #endregion 
+    #endregion
+
+    #region collision 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer != gameObject.layer)
+        {
+            _hits--;
+            if(_hits<=0)
+            {
+                // Destroy(this);
+                Destroy(gameObject);
+            }
+        }
+    }
+    #endregion collision 
 }

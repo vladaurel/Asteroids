@@ -6,6 +6,11 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     #region variables 
+    public LifeHandler lifeHandler;
+
+    [SerializeField]
+    private Button _openBtn;
+
     [SerializeField]
     private List<GameObject> lives = new List<GameObject>();
 
@@ -24,6 +29,8 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _scoreText.text = "0";
+
+        _openBtn.transform.position = new Vector2(35, 35);
     }
     #endregion init 
 
@@ -41,13 +48,36 @@ public class UIManager : MonoBehaviour
         }
 
         // close all menus
-        menus[_currentMenu].DeActivate();
+        if (_currentMenu >= 0)
+        {
+            menus[_currentMenu].DeActivate();
+        }
         if (menuLocation < 0)
         {
             return;
         }
         menus[menuLocation].Activate();
         _currentMenu = menuLocation;
+        Time.timeScale = 0;
+    }
+
+    public void CloseCurrentMenu()
+    {
+        if(_currentMenu>-1)
+        {
+            menus[_currentMenu].DeActivate();
+        }
+        _currentMenu = -1;
+
+        Time.timeScale = 1;
     }
     #endregion use menu 
+
+
+    #region updates 
+    public void UpdateScore()
+    {
+        _scoreText.text = (StateMachineAsteroids.PLAYER_PROFILE.score * 10).ToString();
+    }
+    #endregion update 
 }

@@ -21,9 +21,6 @@ public class Weapon1 : BaseWeapon
     {
         // create 3 projectiles 
         // send them at 3 angles 
-
-        Debug.Log("Using weapon !");
-
         CreateBullet(-30);
         CreateBullet(0);
         CreateBullet(30);

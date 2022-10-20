@@ -22,7 +22,7 @@ public class StateMachineAsteroids : MonoBehaviour
     public static ResourcesLoader RESOURCE_LOADER = null;
 
     // testing
-    private bool _allowSave = false;
+    private bool _allowSave = true;
     #endregion variables 
 
     #region init 
