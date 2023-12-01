@@ -7,6 +7,7 @@ public class BaseAsteroid : MonoBehaviour
     #region lives 
     private int _steps;
 
+    private float _distancePercent = 0.4f;
 
     private float orthographicWidth;
     private float orthographicHeight;
@@ -97,17 +98,16 @@ public class BaseAsteroid : MonoBehaviour
             if (collision.collider.gameObject.layer != gameObject.layer)
             {
                 _steps--;
+                StateMachineAsteroids.PLAYER_PROFILE.score++;
+                StateMachineAsteroids.Instance().uiManager.UpdateScore();
                 if (_steps > 0)
                 {
                     float angle1 = transform.rotation.eulerAngles.z - 90;
                     float angle2 = transform.rotation.eulerAngles.z + 90;
-                    Vector3 difference = new Vector3(transform.localScale.x * Mathf.Cos(angle1 * Mathf.Deg2Rad), transform.localScale.y * Mathf.Sin(angle1 * Mathf.Deg2Rad), 0);
+                    Vector3 difference = new Vector3(transform.localScale.x * Mathf.Cos(angle1 * Mathf.Deg2Rad) * _distancePercent, transform.localScale.y * Mathf.Sin(angle1 * Mathf.Deg2Rad) * _distancePercent, 0);
                     GameManagerAsteroids.Instance().asteroidManager.CreateNewAsteroidAtLocation(transform.position + difference, angle2, _steps, transform.localScale.x * .75f);
                     GameManagerAsteroids.Instance().asteroidManager.CreateNewAsteroidAtLocation(transform.position - difference, angle1, _steps, transform.localScale.x * .75f);
                 } else {
-                    StateMachineAsteroids.PLAYER_PROFILE.score++;
-                    StateMachineAsteroids.Instance().uiManager.UpdateScore();
-
                     // GameManagerAsteroids.Instance().pickupManager.ChanceToAddPowerup(transform.position);
                 }
                 GameManagerAsteroids.Instance().pickupManager.ChanceToAddPowerup(transform.position);
@@ -178,12 +178,11 @@ public class BaseAsteroid : MonoBehaviour
     public void FinalizeAsteroidDestruction(bool footbalMode = false)
     {
         // add to score 
-        if (footbalMode)
+        StateMachineAsteroids.PLAYER_PROFILE.score++;
+        StateMachineAsteroids.Instance().uiManager.UpdateScore();
+        StateMachineAsteroids.Instance().audioController.PlayAudio("destroy1");
+        if (!footbalMode)
         {
-            
-        } else {
-            StateMachineAsteroids.PLAYER_PROFILE.score++;
-            StateMachineAsteroids.Instance().uiManager.UpdateScore();
             GameManagerAsteroids.Instance().pickupManager.ChanceToAddPowerup(transform.position);
         }
 

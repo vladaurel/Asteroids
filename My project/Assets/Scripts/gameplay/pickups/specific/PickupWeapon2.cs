@@ -10,6 +10,7 @@ namespace Pickups
         {
             // base.ActivateSuperPower(); 
             GameManagerAsteroids.Instance().playerManager.ChangePlayerWeapon(2);
+            base.ActivateSuperPower();
         }
     }
 }

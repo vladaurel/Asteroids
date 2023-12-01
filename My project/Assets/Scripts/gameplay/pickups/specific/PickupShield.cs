@@ -15,12 +15,14 @@ namespace Pickups
             if (!player.hasShield)
             {
                 // player.gameObject.AddComponent<ShieldPowerup>();
-                GameObject shield = StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("powerup/ShieldPowerup");
+                GameObject shield = StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("powerup/ShieldPowerup_Prf");
                 
                 shield.transform.parent = player.transform;
                 shield.transform.position = player.transform.position;
                 player.hasShield = true;
             }
+
+            base.ActivateSuperPower();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Cinematic1
         #region update
         private void Update()
         {
-            Debug.LogError(_cam.orthographicSize);
+            // Debug.LogError(_cam.orthographicSize);
             if (_allowCheck)
             {
                 _cam.orthographicSize += _speed * Time.deltaTime;

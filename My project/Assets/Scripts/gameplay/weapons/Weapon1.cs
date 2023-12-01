@@ -19,6 +19,8 @@ public class Weapon1 : BaseWeapon
     #region use weapon 
     public override void UseWeapon()
     {
+        StateMachineAsteroids.Instance().audioController.PlayAudio("bullet1");
+
         // create 3 projectiles 
         // send them at 3 angles 
         CreateBullet(-30);

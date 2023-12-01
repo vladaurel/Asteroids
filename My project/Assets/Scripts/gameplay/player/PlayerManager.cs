@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager
 {
     #region variables 
     public PlayerClass player;
@@ -14,11 +12,11 @@ public class PlayerManager : MonoBehaviour
     #region init 
     public void Initialize()
     {
-        GameObject playerObj = StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("prefabs/Player");
+        GameObject playerObj = StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("prefabs/Player_Prf");
         player = playerObj.GetComponent<PlayerClass>();
         player.Initialize();
 
-        controls = gameObject.AddComponent<PlayerControls>();
+        controls = playerObj.AddComponent<PlayerControls>();// gameObject.AddComponent<PlayerControls>();
         controls.Init(player);
 
         UpdateDifficultyAndReset();

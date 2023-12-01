@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Powerups;
+using UnityEngine.SceneManagement;
 
 public class PlayerClass : MonoBehaviour
 {
@@ -163,7 +164,19 @@ public class PlayerClass : MonoBehaviour
                     _body.velocity = new Vector2(0, 0);
                     _body.angularVelocity = 0f;
 
-                    StateMachineAsteroids.Instance().uiManager.lifeHandler.DecreaseLife();
+                    if(StateMachineAsteroids.Instance().uiManager.lifeHandler.DecreaseLife() == 0)
+                    {
+                        // would usually disable everything
+                        if (gameObject.activeInHierarchy)
+                        {
+                            gameObject.SetActive(false);
+                            StateMachineAsteroids.Instance().audioController.PlayAudio("gameover");
+                            StateMachineAsteroids.Instance().SaveGame();
+                            SceneManager.LoadSceneAsync(2);
+                        }
+                    } else {
+                        StateMachineAsteroids.Instance().audioController.PlayAudio("destroy2");
+                    }
                 }
             } else {
                 _body.angularVelocity = 0f;

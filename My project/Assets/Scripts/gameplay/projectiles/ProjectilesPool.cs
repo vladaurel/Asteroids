@@ -32,9 +32,9 @@ public class ProjectilesPool : MonoBehaviour
             switch(type)
             {
                 // 
-                case 1: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile")); break;
-                case 2: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/MoonProjectile"));  break;
-                default: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile")); break;
+                case 1: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile_Prf")); break;
+                case 2: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/MoonProjectile_Prf"));  break;
+                default: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile_Prf")); break;
             }
             return projectile;
         }

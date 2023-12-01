@@ -39,12 +39,12 @@ public class PickupManager : MonoBehaviour
 
             switch (_profile.powerupsAllowed[location]) 
             { 
-                case 1: pickup = res.CreateAndReturnGameObject("pickups/PickupShield"); break; 
-                case 2: pickup = res.CreateAndReturnGameObject("pickups/PickupWeapon2"); break; 
-                case 3: pickup = res.CreateAndReturnGameObject("pickups/PickupAsteroidExplosion"); break; 
-                case 4: pickup = res.CreateAndReturnGameObject("pickups/PickupDefensiveFriend"); break; 
-                case 5: pickup = res.CreateAndReturnGameObject("pickups/PickupExtraLife"); break; 
-                case 6: pickup = res.CreateAndReturnGameObject("pickups/PickupEthereal"); break; 
+                case 1: pickup = res.CreateAndReturnGameObject("pickups/PickupShield_Prf"); break; 
+                case 2: pickup = res.CreateAndReturnGameObject("pickups/PickupWeapon2_Prf"); break; 
+                case 3: pickup = res.CreateAndReturnGameObject("pickups/PickupAsteroidExplosion_Prf"); break; 
+                case 4: pickup = res.CreateAndReturnGameObject("pickups/PickupDefensiveFriend_Prf"); break; 
+                case 5: pickup = res.CreateAndReturnGameObject("pickups/PickupExtraLife_Prf"); break; 
+                case 6: pickup = res.CreateAndReturnGameObject("pickups/PickupEthereal_Prf"); break; 
             }
             pickup.transform.position = atPosition;
         }

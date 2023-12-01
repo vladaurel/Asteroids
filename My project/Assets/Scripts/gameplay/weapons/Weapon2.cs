@@ -25,6 +25,8 @@ public class Weapon2 : BaseWeapon
     #region functionality 
     public override void UseWeapon()
     {
+        StateMachineAsteroids.Instance().audioController.PlayAudio("bullet2");
+
         GameObject newBullet = GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(2);
         newBullet.transform.position = transform.position;
 

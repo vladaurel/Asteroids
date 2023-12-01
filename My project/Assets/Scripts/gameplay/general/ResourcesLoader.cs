@@ -3,16 +3,13 @@ This class is a centralized point for loading resources -
 be it an image, an object, etc. 
 
 I normally wouldn't use Resources.Load, however I'm using it for now as I'm in a bit of a hurry.
+ - I would normally use - Addressables, Scriptable Objects .
 
-Other methods I would use are :
+What I am doing and wouldn't do.
 - linking the prefabs directly on objects on the stage ( I usually never do that, even with UI - this time I'm in a bit of a rush )
-- asset bundles ( I do this most often ) 
-- addressables ( rare case to be frank ) 
-
+- other uncommon practices. 
 
 */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourcesLoader : MonoBehaviour
@@ -21,12 +18,14 @@ public class ResourcesLoader : MonoBehaviour
     // Return a regular prefab
     public GameObject CreateAndReturnGameObject(string prefabLocation)
     {
+        // Debug.Log("PREFAB LOCATION -------------- : " + prefabLocation);
         return Instantiate(Resources.Load(prefabLocation) as GameObject);
     }
 
 
     public GameObject ReturnPrefab(string prefabLocation)
     {
+        // Debug.Log("PREFAB LOCATION : "+prefabLocation);
         return Resources.Load(prefabLocation) as GameObject;
     }
 
@@ -52,7 +51,7 @@ public class ResourcesLoader : MonoBehaviour
     /**
     public Sprite ReturnSprite(string spriteName, string location = "default")
     {
-        if(location != default)
+        if(location != "default")
         {
             spriteName = location + spriteName;
         }

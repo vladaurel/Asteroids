@@ -8,8 +8,9 @@ using UnityEngine;
 public class BaseProjectile : MonoBehaviour
 {
     #region variables 
-    private float _timeToLive = 3f;
-
+    private float _timeToLive;
+    private float _lifeTime = 3f;
+    private Rigidbody2D _body;
     protected int _hits = 1;
 
     [SerializeField]
@@ -18,9 +19,14 @@ public class BaseProjectile : MonoBehaviour
 
 
     #region init 
+    private void Awake()
+    {
+        _body = GetComponent<Rigidbody2D>();
+    }
+
     private void OnEnable()
     {
-        _timeToLive += Time.time;
+        _timeToLive = Time.time + _lifeTime;
     }
     #endregion init 
 
@@ -60,9 +66,9 @@ public class BaseProjectile : MonoBehaviour
     public virtual void ReadyForReuse()
     {
         _hits = 1;
-        Rigidbody2D tempBody = gameObject.GetComponent<Rigidbody2D>();
-        tempBody.angularVelocity = 0;
-        tempBody.velocity = new Vector2(0, 0);
+        _body = gameObject.GetComponent<Rigidbody2D>();
+        _body.angularVelocity = 0;
+        _body.velocity = new Vector2(0, 0);
         gameObject.SetActive(true);
     }
     #endregion pooling 

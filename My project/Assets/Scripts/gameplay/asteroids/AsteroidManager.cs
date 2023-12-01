@@ -5,7 +5,7 @@ using UnityEngine;
 public class AsteroidManager : MonoBehaviour
 {
     #region variables 
-    private List<GameObject> asteroidsPrefabs = new List<GameObject>();
+    private List<GameObject> _asteroidsPrefabs = new List<GameObject>();
 
     [System.NonSerialized]
     public List<BaseAsteroid> allAsteroids = new List<BaseAsteroid>();
@@ -32,16 +32,11 @@ public class AsteroidManager : MonoBehaviour
     #region init 
     private void Awake()
     {
-        GameObject tempAsteroid = StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/Asteroid1");
-        asteroidsPrefabs.Add(tempAsteroid);
-        tempAsteroid = StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/Asteroid2");
-        asteroidsPrefabs.Add(tempAsteroid);
-        tempAsteroid = StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/Asteroid3");
-        asteroidsPrefabs.Add(tempAsteroid);
-        tempAsteroid = StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/Asteroid4");
-        asteroidsPrefabs.Add(tempAsteroid);
-        tempAsteroid = StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/Asteroid5");
-        asteroidsPrefabs.Add(tempAsteroid);
+        for (int i = 1; i < 5; i++)
+        {
+            string location = "prefabs/Asteroid" + i.ToString()+"_Prf";
+            _asteroidsPrefabs.Add(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab(location));
+        }
     }
 
     public void Initialize()
@@ -83,7 +78,10 @@ public class AsteroidManager : MonoBehaviour
 
         GameObject newAsteroid = ReturnPoolAsteroid();
 
-        newAsteroid.GetComponent<BaseAsteroid>().Init(newQuadrant, StateMachineAsteroids.PLAYER_PROFILE.asteroidDestroySteps, StateMachineAsteroids.PLAYER_PROFILE.initialAsteroidScale, currentDifficulty); // , currentDifficulty);
+        newAsteroid.GetComponent<BaseAsteroid>().Init(newQuadrant, 
+                                                        StateMachineAsteroids.PLAYER_PROFILE.asteroidDestroySteps, 
+                                                        StateMachineAsteroids.PLAYER_PROFILE.initialAsteroidScale, 
+                                                        currentDifficulty); 
 
         latestQuadrant = newQuadrant;
 
@@ -162,11 +160,22 @@ public class AsteroidManager : MonoBehaviour
         {
             GameObject pooledAsteroid = asteroidPool[0];
             asteroidPool.RemoveAt(0);
-            pooledAsteroid.GetComponent<BaseAsteroid>().ReadyForReuse();
-            return pooledAsteroid;
+            if (pooledAsteroid != null)
+            {
+                // just in case we feel like deleting asteroids from the inspector. 
+                pooledAsteroid.GetComponent<BaseAsteroid>().ReadyForReuse();
+                return pooledAsteroid;
+            } else {
+                return ReturnPoolAsteroid();
+            }
         } else {
-            int randAsteroid = Mathf.RoundToInt(Random.Range(0, 4));
-            GameObject newAsteroid = Instantiate(asteroidsPrefabs[randAsteroid]) as GameObject;
+            int randAsteroid = Mathf.RoundToInt(Random.Range(0, 3));
+            Debug.Log(_asteroidsPrefabs.Count);
+            for (int i = 0; i < _asteroidsPrefabs.Count; i++)
+            {
+                Debug.Log(_asteroidsPrefabs[i]);
+            }
+            GameObject newAsteroid = Instantiate(_asteroidsPrefabs[randAsteroid]) as GameObject;
             return newAsteroid;
         }
     }

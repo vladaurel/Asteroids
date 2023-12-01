@@ -15,7 +15,7 @@ namespace Pickups
                 asteroidManager.allAsteroids[i].FinalizeAsteroidDestruction();
             }
 
-            Destroy(gameObject);
+            base.ActivateSuperPower();
         }
         #endregion init 
     }

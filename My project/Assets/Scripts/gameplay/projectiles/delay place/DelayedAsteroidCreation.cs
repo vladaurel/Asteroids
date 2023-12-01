@@ -18,6 +18,7 @@ public class DelayedAsteroidCreation : MonoBehaviour
     #region init 
     public void Initialize(Vector2 placeLocation, float angleIs, int stepsToDestroyAre, float scaleIs, float timeToIt)
     {
+        Debug.Log("Initialize gets called " + scaleIs);
         _location = placeLocation;
         _angle = angleIs;
         _stepsToDestroy = stepsToDestroyAre;

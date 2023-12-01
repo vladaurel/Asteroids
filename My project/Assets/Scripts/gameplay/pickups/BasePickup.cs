@@ -25,7 +25,7 @@ public class BasePickup : MonoBehaviour
     // private void OnCollisionEnter2D(Collision2D collision)
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        // this can only collide with the player - however it can also collide with other ghost parts
+        // this should only collide with the player - however it can also collide with other ghost parts
         if(collider.gameObject.GetComponent<PlayerClass>()!=null)
         {
             ActivateSuperPower();
@@ -41,7 +41,7 @@ public class BasePickup : MonoBehaviour
 
     protected virtual void ActivateSuperPower()
     {
-        Debug.Break();
+        StateMachineAsteroids.Instance().audioController.PlayAudio("pickup");
     }
     #endregion specific functionality 
 

@@ -2,15 +2,16 @@
  * Primary class - used as a base root for the game.
  * 
  */
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Profile.SaveAndLoad;
+using Audio;
 
 public class StateMachineAsteroids : MonoBehaviour
 {
     #region variables 
     // WYSIWYG - 
     public UIManager uiManager;
+    public AudioController audioController;
 
     // Singleton
     private static StateMachineAsteroids _instance;

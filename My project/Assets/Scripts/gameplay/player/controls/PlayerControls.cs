@@ -61,13 +61,15 @@ public class PlayerControls : MonoBehaviour
     #endregion lock unlock 
 
     #region keyboard functionality 
+
+    // would normally do this with Task - time constraints ( inefficient as we're placing it in update ) 
     private void Update()
     {
-        if (Input.GetKey(_leftKey)) { _left = true; } else { _left = false; }
-        if (Input.GetKey(_rightKey)) { _right = true; } else { _right = false; }
-        if (Input.GetKey(_upKey)) { _up = true; } else { _up = false; }
-        if (Input.GetKey(_downKey)) { _down = true; } else { _down = false; }
-        if (Input.GetKey(_fireKey)) { _fire = true; } else { _fire = false; }
+        _left = Input.GetKey(_leftKey);
+        _right = Input.GetKey(_rightKey);
+        _up = Input.GetKey(_upKey);
+        _down = Input.GetKey(_downKey);
+        _fire = Input.GetKey(_fireKey);
     }
 
     private void FixedUpdate()

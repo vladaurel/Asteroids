@@ -52,7 +52,8 @@ public class DesignerMenu : UIBaseMenu
         profile.difficulty = Mathf.RoundToInt(_difficulty.value);
         profile.chanceToCreatePickup = Mathf.RoundToInt(_powerupDensity.value);
 
-        // Int32.Parse(input)
+        Debug.Log("Applied ! "+_asteroidSteps.value );
+
         StateMachineAsteroids.Instance().SaveGame();
 
         GameManagerAsteroids.Instance().playerManager.UpdateDifficultyAndReset();
@@ -81,6 +82,7 @@ public class DesignerMenu : UIBaseMenu
     public void Restart()
     {
         StateMachineAsteroids.Instance().SaveGame();
+        Time.timeScale = 1;
         if (StateMachineAsteroids.PLAYER_PROFILE.playIntro)
         {
             SceneManager.LoadScene(0);

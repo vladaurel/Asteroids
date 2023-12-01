@@ -31,16 +31,15 @@ public class LifeHandler : MonoBehaviour
 
 
     #region setup lives  
-    public void DecreaseLife()
+    public int DecreaseLife()
     {
         if (_livesArray.Count > 1)
         {
             Destroy(_livesArray[_livesArray.Count - 1]);
             _livesArray.RemoveAt(_livesArray.Count - 1);
-            StateMachineAsteroids.PLAYER_PROFILE.currentLives--;
+            return StateMachineAsteroids.PLAYER_PROFILE.currentLives--;
         } else {
-            StateMachineAsteroids.Instance().SaveGame();
-            SceneManager.LoadScene(3);
+            return 0;
         }
     }
 

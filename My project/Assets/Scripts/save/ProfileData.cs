@@ -20,11 +20,11 @@ public class ProfileData {
     //============================================================
     //                 Designer Options : 
     //============================================================
-    public int hpMaxLives = 10;
+    public int hpMaxLives = 6;
     public float acceleration = 200.0f;
     public float rotationSpeed = 80.0f;
-    public float initialAsteroidScale = 1.0f;
-    public int asteroidDestroySteps = 3; // how many times will it break into others ? 
+    public float initialAsteroidScale = 2.0f;
+    public int asteroidDestroySteps = 4; // how many times will it break into others ? 
     public float difficulty = 1f; // 
 
     public bool playIntro = true;
@@ -35,13 +35,13 @@ public class ProfileData {
     //               Extra options : 
     //============================================================
     public bool pickupsMoveToPlayer = true;
-    public int chanceToCreatePickup = 4;
+    public int chanceToCreatePickup = 3;
     
 
     //============================================================
     //               Modes : 
     //============================================================
-    // public bool defenderShip = false; // creates a ship that will spin around the player - 
+    // public bool defenderShip = false; // creates a ship that will spin around the player - // ran out of time :P 
     public bool spaceshipTrail = false; // your ship will leave a trail behind
     public bool footbalMode = false; // asteroids are destroyed when leaving the screen. Player cannot die. 
     public bool alliedVisitors = false; // random ships will start appearing and shooting at the asteroids 
@@ -52,7 +52,7 @@ public class ProfileData {
     //============================================================
     public List<int> powerupsAllowed = new List<int>() { 1,2 };  // 4 later - 
     // 1-shield ; 2-weapon 2 ; 3-asteroid bomb ;
-    // 4 - defensive ball ; 5 - extra lives ; 6 - ethereal ; 
+    // 4 - defensive ball ; 5 - extra lives ; 6 - ethereal ; // ran out of time 
 
 
     //============================================================
@@ -80,8 +80,8 @@ public class ProfileData {
     public void PrepareForSave()
     {
         // TODO 
-        // actually not really needed but just in case I want to save everything in the moment
-        // and need to get data from the player in the future - this is a reminder.
+        // actually not really needed but just in case I want to save everything in the moment 
+        // and need to get data from the player in the future - this is a reminder. 
     }
 
     public void AddPowerup(string powerup)

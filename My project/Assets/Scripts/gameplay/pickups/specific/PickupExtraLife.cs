@@ -7,5 +7,6 @@ public class PickupExtraLife : BasePickup
     protected override void ActivateSuperPower()
     {
         StateMachineAsteroids.Instance().uiManager.lifeHandler.IncreaseLives(); 
+        base.ActivateSuperPower();
     }
 }

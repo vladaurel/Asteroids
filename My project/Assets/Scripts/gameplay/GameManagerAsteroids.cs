@@ -11,11 +11,11 @@ public class GameManagerAsteroids : MonoBehaviour
     #region variables 
     private static GameManagerAsteroids _instance = null;
 
-    public PlayerManager playerManager; // player manager - contains player, player controls 
-    public AsteroidManager asteroidManager; // asteroid manager - contains asteroids and controls
-    public PickupManager pickupManager;
+    [HideInInspector] public PlayerManager playerManager; // player manager - contains player, player controls 
+    [HideInInspector] public AsteroidManager asteroidManager; // asteroid manager - contains asteroids and controls
+    [HideInInspector] public PickupManager pickupManager;
 
-    public ProjectilesPool projectilesPool;
+    [HideInInspector] public ProjectilesPool projectilesPool;
 
     public DiscoMode discoMode;
     // misc manager - contains alien + powerups 
@@ -42,7 +42,7 @@ public class GameManagerAsteroids : MonoBehaviour
 
     public void Init(ProfileData playerProfile)
     {
-        playerManager = gameObject.AddComponent<PlayerManager>();
+        playerManager = new PlayerManager(); // gameObject.AddComponent<PlayerManager>();
         asteroidManager = gameObject.AddComponent<AsteroidManager>();
         pickupManager = gameObject.AddComponent<PickupManager>();
 

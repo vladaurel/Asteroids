@@ -1,8 +1,7 @@
 /**
- * 
+ * I would normally never place this on the player - but doing so due to time constraints. 
+ * I'd add this externally with a state machine ( and not make it a MonoBehaviour ) - so it could be reused on other players/objects, and not mandatory connected 
  */ 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InvinciblePowerup : MonoBehaviour
@@ -27,20 +26,17 @@ public class InvinciblePowerup : MonoBehaviour
     #region functionality 
     public void SetupNewInvulnerabilityTime(float newTime)
     {
-        if(newTime<=Time.time)
-        {
-            return; // should never happen
-        }
+        if(newTime<=Time.time) return; // should never happen
 
-        if(newTime>_newInvulnTime)
-        {
-            _newInvulnTime = newTime;
-        }
+        if(newTime>_newInvulnTime) _newInvulnTime = newTime;
+
         enabled = true;
         _player.SetNewInvulnTime(newTime);
         _sprite.color = new Color(1, 0, 0, 1);
     }
     
+
+    // would usually do this with async or IEnumerator ( or even IAsyncEnumerator :)) ) - however placing as is due to time constraints.
     private void Update()
     {
         if(Time.time>_newInvulnTime)

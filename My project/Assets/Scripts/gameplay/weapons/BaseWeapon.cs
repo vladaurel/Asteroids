@@ -24,6 +24,7 @@ public class BaseWeapon : MonoBehaviour, IWeapon
     public virtual void UseWeapon()
     {
         // written for the purpose of overriding 
+        // Check : Weapon1 , Weapon2, etc.
     }
 
     public void Remove()
