@@ -13,7 +13,7 @@ public class PickupManager : MonoBehaviour
         _profile = StateMachineAsteroids.PLAYER_PROFILE;
     }
 
-    public void ChanceToAddPowerup(Vector2 atPosition)
+    public async void ChanceToAddPowerup(Vector2 atPosition)
     {
         if(StateMachineAsteroids.PLAYER_PROFILE.footbalMode)
         {
@@ -39,12 +39,12 @@ public class PickupManager : MonoBehaviour
 
             switch (_profile.powerupsAllowed[location]) 
             { 
-                case 1: pickup = res.CreateAndReturnGameObject("pickups/PickupShield_Prf"); break; 
-                case 2: pickup = res.CreateAndReturnGameObject("pickups/PickupWeapon2_Prf"); break; 
-                case 3: pickup = res.CreateAndReturnGameObject("pickups/PickupAsteroidExplosion_Prf"); break; 
-                case 4: pickup = res.CreateAndReturnGameObject("pickups/PickupDefensiveFriend_Prf"); break; 
-                case 5: pickup = res.CreateAndReturnGameObject("pickups/PickupExtraLife_Prf"); break; 
-                case 6: pickup = res.CreateAndReturnGameObject("pickups/PickupEthereal_Prf"); break; 
+                case 1: pickup = await res.CreateAndReturnGameObject("pickups/PickupShield_Prf"); break; 
+                case 2: pickup = await res.CreateAndReturnGameObject("pickups/PickupWeapon2_Prf"); break; 
+                case 3: pickup = await res.CreateAndReturnGameObject("pickups/PickupAsteroidExplosion_Prf"); break; 
+                case 4: pickup = await res.CreateAndReturnGameObject("pickups/PickupDefensiveFriend_Prf"); break; 
+                case 5: pickup = await res.CreateAndReturnGameObject("pickups/PickupExtraLife_Prf"); break; 
+                case 6: pickup = await res.CreateAndReturnGameObject("pickups/PickupEthereal_Prf"); break; 
             }
             pickup.transform.position = atPosition;
         }

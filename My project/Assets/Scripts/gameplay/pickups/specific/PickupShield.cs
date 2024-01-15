@@ -7,7 +7,7 @@ namespace Pickups
 {
     public class PickupShield : BasePickup
     {
-        protected override void ActivateSuperPower()
+        protected override async void ActivateSuperPower()
         {
             PlayerClass player = GameManagerAsteroids.Instance().playerManager.player;
 
@@ -15,7 +15,7 @@ namespace Pickups
             if (!player.hasShield)
             {
                 // player.gameObject.AddComponent<ShieldPowerup>();
-                GameObject shield = StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("powerup/ShieldPowerup_Prf");
+                GameObject shield = await StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("powerup/ShieldPowerup_Prf");
                 
                 shield.transform.parent = player.transform;
                 shield.transform.position = player.transform.position;

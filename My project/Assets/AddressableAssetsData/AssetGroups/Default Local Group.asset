@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6f7e5d32867bafd4a8818cf68d1a831f
+  m_SerializeEntries:
+  - m_GUID: 29f3de8675017ed439b6d7fc0c36bc0c
+    m_Address: Assets/Addressables/Prefabs/objects/Player_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 636bfadcaa55fbe448f5e6ed1fa37e02
+    m_Address: Assets/Addressables/Prefabs/objects/Asteroid1_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 971998f2fa0c30a4d9a2933e4eba209a
+    m_Address: Assets/Addressables/Prefabs/objects/Asteroid2_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e47dab5b1a921c343aa9690be191339a
+    m_Address: Assets/Addressables/Prefabs/objects/Asteroid3_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc97cef566ed08f459796a156069fccb
+    m_Address: Assets/Addressables/Prefabs/objects/Asteroid4_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ab9c5754f2902446a137884e34cc2c3
+    m_Address: Assets/Addressables/Prefabs/pickups/PickupAsteroidExplosion_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a378cbb533d07542af9bea8e809a557
+    m_Address: Assets/Addressables/Prefabs/pickups/PickupDefensiveFriend_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 272ae3e68ee82ed409641c1fd7fcb554
+    m_Address: Assets/Addressables/Prefabs/pickups/PickupEthereal_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b329558e231680346931c610d75f8e8a
+    m_Address: Assets/Addressables/Prefabs/pickups/PickupExtraLife_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cfa5555e6e0f254095bc3fe3ebf1dba
+    m_Address: Assets/Addressables/Prefabs/pickups/PickupShield_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d46afca3bd25774c8fa5aa32d96148c
+    m_Address: Assets/Addressables/Prefabs/pickups/PickupWeapon2_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ffafe6b46be76646b64f2f3ac0e466d
+    m_Address: Assets/Addressables/Prefabs/powerup/ShieldPowerup_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: edc8bad8fb98a4b429f98f6463a361c3
+    m_Address: Assets/Addressables/Prefabs/projectiles/BasicProjectile_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63daaaf6eac990245a52538cb290ab70
+    m_Address: Assets/Addressables/Prefabs/projectiles/MoonProjectile_Prf.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: eaf21e6d5603eed46a350bf7933f4794, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 47b663efbfcbf5c488688b822f61db8b, type: 2}
+    - {fileID: 11400000, guid: 4c547a7f194d24547aa0dc9a6599e6dc, type: 2}

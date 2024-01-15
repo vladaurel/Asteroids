@@ -23,11 +23,11 @@ public class Weapon2 : BaseWeapon
     #endregion init 
 
     #region functionality 
-    public override void UseWeapon()
+    public override async void UseWeapon()
     {
         StateMachineAsteroids.Instance().audioController.PlayAudio("bullet2");
 
-        GameObject newBullet = GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(2);
+        GameObject newBullet = await GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(2);
         newBullet.transform.position = transform.position;
 
         Rigidbody2D body = newBullet.GetComponent<Rigidbody2D>();

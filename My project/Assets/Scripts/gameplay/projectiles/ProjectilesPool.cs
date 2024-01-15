@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ProjectilesPool : MonoBehaviour
@@ -11,7 +12,7 @@ public class ProjectilesPool : MonoBehaviour
 
 
     #region 
-    public GameObject ReturnProjectileType(int type)
+    public async Task<GameObject> ReturnProjectileType(int type)
     {
         List<GameObject> listToUse;
         switch(type)
@@ -32,9 +33,9 @@ public class ProjectilesPool : MonoBehaviour
             switch(type)
             {
                 // 
-                case 1: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile_Prf")); break;
-                case 2: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/MoonProjectile_Prf"));  break;
-                default: projectile = Instantiate(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("prefabs/BasicProjectile_Prf")); break;
+                case 1: projectile = Instantiate(await StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("projectiles/BasicProjectile_Prf")); break;
+                case 2: projectile = Instantiate(await StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("projectiles/MoonProjectile_Prf"));  break;
+                default: projectile = Instantiate(await StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab("projectiles/BasicProjectile_Prf")); break;
             }
             return projectile;
         }

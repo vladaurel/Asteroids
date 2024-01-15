@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class AsteroidManager : MonoBehaviour
 {
@@ -32,18 +34,27 @@ public class AsteroidManager : MonoBehaviour
     #region init 
     private void Awake()
     {
+        this.enabled = false;
+    }
+
+    public async Task InitializeAsteroidList()
+    {
         for (int i = 1; i < 5; i++)
         {
-            string location = "prefabs/Asteroid" + i.ToString()+"_Prf";
-            _asteroidsPrefabs.Add(StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab(location));
+            string location = "objects/Asteroid" + i.ToString() + "_Prf";
+            _asteroidsPrefabs.Add(await StateMachineAsteroids.RESOURCE_LOADER.ReturnPrefab(location));
         }
+        Debug.LogError("Awaited all asteroids "+_asteroidsPrefabs.Count);
+        // this.enabled = true;
+        // TODO - allAsteroids prefabs need to be there before we actually call the instantiate method.
+            // RESEARCH !!! 
     }
 
     public void Initialize()
     {
         UpdateDifficultyAndReset();
-
-        CreateNewAsteroid(2);
+        this.enabled = true;
+        // CreateNewAsteroid(2);
     }
 
     public void UpdateDifficultyAndReset()
@@ -175,6 +186,8 @@ public class AsteroidManager : MonoBehaviour
             {
                 Debug.Log(_asteroidsPrefabs[i]);
             }
+            Debug.Log(randAsteroid + "| Rand asteroid");
+            Debug.Log(_asteroidsPrefabs.Count);
             GameObject newAsteroid = Instantiate(_asteroidsPrefabs[randAsteroid]) as GameObject;
             return newAsteroid;
         }

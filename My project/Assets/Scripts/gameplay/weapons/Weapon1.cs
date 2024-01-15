@@ -28,10 +28,10 @@ public class Weapon1 : BaseWeapon
         CreateBullet(30);
     }
 
-    private void CreateBullet(float deltaSpeed)
+    private async void CreateBullet(float deltaSpeed)
     {
         // GameObject newBullet = Instantiate(_projectile);
-        GameObject newBullet = GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(1);
+        GameObject newBullet = await GameManagerAsteroids.Instance().projectilesPool.ReturnProjectileType(1);
         newBullet.transform.position = transform.position;
 
         // newBullet.transform.position = newBullet.transform.position + (0.5f * new Vector3(Mathf.Cos(gameObject.transform.eulerAngles.z), Mathf.Sin(gameObject.transform.eulerAngles.z), 0));

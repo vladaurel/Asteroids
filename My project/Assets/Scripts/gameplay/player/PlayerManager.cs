@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerManager
@@ -10,9 +11,9 @@ public class PlayerManager
 
 
     #region init 
-    public void Initialize()
+    public async Task Initialize()
     {
-        GameObject playerObj = StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("prefabs/Player_Prf");
+        GameObject playerObj = await StateMachineAsteroids.RESOURCE_LOADER.CreateAndReturnGameObject("objects/Player_Prf");
         player = playerObj.GetComponent<PlayerClass>();
         player.Initialize();
 
@@ -21,6 +22,7 @@ public class PlayerManager
 
         UpdateDifficultyAndReset();
         ChangePlayerWeapon(1);
+        Debug.LogError("LAUNCHED PLAYER");
         // ChangePlayerWeapon(2);
     }
 

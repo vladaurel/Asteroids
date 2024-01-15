@@ -10,11 +10,46 @@ What I am doing and wouldn't do.
 - other uncommon practices. 
 
 */
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class ResourcesLoader : MonoBehaviour
 {
     #region loading 
+    public async Task<GameObject> CreateAndReturnGameObject(string prefabLocation)
+    {
+        prefabLocation = "Assets/Addressables/Prefabs/" + prefabLocation+".prefab";
+        GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(prefabLocation).Task;
+        if (prefab != null)
+        {
+            return Instantiate(prefab);
+        }
+        else
+        {
+            Debug.LogError($"Failed to load prefab from {prefabLocation}");
+            return null;
+        }
+    }
+
+    public async Task<GameObject> ReturnPrefab(string prefabLocation)
+    {
+        prefabLocation = "Assets/Addressables/Prefabs/" + prefabLocation+".prefab";
+
+        GameObject prefab = await Addressables.LoadAssetAsync<GameObject>(prefabLocation).Task;
+        if (prefab != null)
+        {
+            return prefab;
+        }
+        else
+        {
+            Debug.LogError($"Failed to load prefab from {prefabLocation}");
+            return null;
+        }
+    }
+
+
+    /**
     // Return a regular prefab
     public GameObject CreateAndReturnGameObject(string prefabLocation)
     {
@@ -28,7 +63,7 @@ public class ResourcesLoader : MonoBehaviour
         // Debug.Log("PREFAB LOCATION : "+prefabLocation);
         return Resources.Load(prefabLocation) as GameObject;
     }
-
+    */
 
     // Return a gameobject that is a UI menu 
     /**

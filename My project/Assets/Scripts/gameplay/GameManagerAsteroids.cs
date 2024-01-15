@@ -40,13 +40,15 @@ public class GameManagerAsteroids : MonoBehaviour
     }
 
 
-    public void Init(ProfileData playerProfile)
+    public async void Init(ProfileData playerProfile)
     {
         playerManager = new PlayerManager(); // gameObject.AddComponent<PlayerManager>();
         asteroidManager = gameObject.AddComponent<AsteroidManager>();
+        await asteroidManager.InitializeAsteroidList();
         pickupManager = gameObject.AddComponent<PickupManager>();
-
-        playerManager.Initialize();
+        Debug.LogError("Should wait for asteroids list");
+        await playerManager.Initialize();
+        
         asteroidManager.Initialize();
 
         discoMode = gameObject.AddComponent<DiscoMode>();
